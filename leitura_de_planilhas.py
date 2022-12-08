@@ -24,7 +24,7 @@ for pasta in caminho.iterdir():
                         for arquivo in caminho.iterdir():
                             print(arquivo)
                             venda = pd.read_excel(arquivo,engine='openpyxl') #LENDO CADA PLANILHA
-                            planilha = planilha.append(venda,ignore_index=True) #COLOCANDO
+                            planilha = planilha.append(venda,ignore_index=True) #COLOCANDO INFORMAÇÕES NO DATAFRAME
 print(planilha)
 vendas_total = planilha.groupby(by="Loja").sum()#MOSTRANDO VALORES DO DATAFRAME AGRUPADOS
 del vendas_total['Vendedor']#TIRANDO A INFORMAÇÃO DOS VENDEDORES
