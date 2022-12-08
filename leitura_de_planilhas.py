@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import pandas as pd
 
-
+os.chdir('------------------')#<<<CAMINHO DA PASTA COM OS ANOS AQUI
 caminho= Path.cwd()
 print(caminho)
 
@@ -21,15 +21,10 @@ for pasta in caminho.iterdir():
                         os.chdir(pasta)
                         caminho= Path.cwd()
                         print(caminho)
-                        for pasta in caminho.iterdir():
-                            if pasta.is_dir():
-                                os.chdir(pasta)
-                                caminho= Path.cwd()
-                                print(caminho)
-                                for arquivo in caminho.iterdir():
-                                    print(arquivo)
-                                    venda = pd.read_excel(arquivo,engine='openpyxl') #LENDO CADA PLANILHA
-                                    planilha = planilha.append(venda,ignore_index=True) #COLOCANDO
+                        for arquivo in caminho.iterdir():
+                            print(arquivo)
+                            venda = pd.read_excel(arquivo,engine='openpyxl') #LENDO CADA PLANILHA
+                            planilha = planilha.append(venda,ignore_index=True) #COLOCANDO
 print(planilha)
 vendas_total = planilha.groupby(by="Loja").sum()#MOSTRANDO VALORES DO DATAFRAME AGRUPADOS
 del vendas_total['Vendedor']#TIRANDO A INFORMAÇÃO DOS VENDEDORES
